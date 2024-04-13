@@ -5,8 +5,8 @@ class Word {
     this.enWord, {
     this.thVoice,
     this.verbClc,
-    this.adjClc,
-    this.adjExample,
+   this.adjClc,
+   this.adjExample,
     this.verbExample
   });
   final String abbreviation;

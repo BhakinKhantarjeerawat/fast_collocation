@@ -2,15 +2,16 @@ import 'package:fast_collocation_dictionary/constants/app_sizes.dart';
 import 'package:fast_collocation_dictionary/constants/word_lists.dart';
 import 'package:fast_collocation_dictionary/keyboard_provider.dart';
 import 'package:fast_collocation_dictionary/models/word.dart';
+import 'package:fast_collocation_dictionary/suggested_letter_provider.dart';
 import 'package:fast_collocation_dictionary/widget/delete_icon_widget.dart';
+import 'package:fast_collocation_dictionary/widget/my_key_board2.dart';
 import 'package:fast_collocation_dictionary/widget/my_keyboard.dart';
 import 'package:fast_collocation_dictionary/widget/searched_widget.dart';
 import 'package:fast_collocation_dictionary/widget/typed_text_widget.dart';
+import 'package:fast_collocation_dictionary/word_description.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dartx/dartx.dart';
-
-
 
 class FilteredWords extends ConsumerWidget {
   const FilteredWords({super.key});
@@ -22,7 +23,7 @@ class FilteredWords extends ConsumerWidget {
         .where((Word element) => element.abbreviation == value)
         .toList();
     if (filteredWords.isEmpty) {
-      return const Text('No word matched the search');
+      return const WordDescriptionText('ไม่พบคำที่ค้นหา');
     } else {
       return Column(
         children: [
@@ -59,9 +60,10 @@ class MyHomePage extends ConsumerStatefulWidget {
 class _MyHomePageState extends ConsumerState<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    final typedText = ref.watch(keyboardProvider).toString();
-    final lastLetter = ref.watch(keyboardProvider);
-    print('HOMEPAGE BUILT');
+    // final typedText = ref.watch(keyboardProvider).toString();
+    final typedTextList = ref.watch(keyboardProvider);
+    final suggestedLetter = ref.watch(suggestedLettersProvider);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -71,7 +73,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(0),
         child: Center(
           child: Column(
             children: <Widget>[
@@ -81,32 +83,54 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
               //   children: [
               //     // ...where((e) => e.abrrviation == value)
               //     ...extraColor,
-
               //   ],
               // ),
               const FilteredWords(),
               const Spacer(),
-              if (typedText.isNotEmpty)
-                Row(
-                  children: [
-                    ElevatedButton(
-                        onPressed: () {}, child: Text(lastLetter.slice(-1))),
-                  ],
+              if (typedTextList.toString().isNotEmpty)
+                SizedBox(
+                  height: 55,
+                  child: ListView.separated(
+                    separatorBuilder: (context, index) => gapW16,
+                    scrollDirection: Axis.horizontal,
+                    // reverse: true,
+                    itemCount: suggestedLetter.length,
+                    itemBuilder: (context, index) {
+                      final result = suggestedLetter[index];
+                      return Center(
+                        child: Center(
+                          child: ElevatedButton(
+                              onPressed: () {
+                                if (typedTextList.length > 1) {
+                                  ref.read(keyboardProvider.notifier).state =
+                                      typedTextList.slice(0, -2) + result;
+                                }
+                              },
+                              child: Text(result)),
+                        ),
+                      );
+                    },
+                  ),
                 ),
+//
               gapH16,
-              MyTextInputWidget(value: typedText, ref: ref),
+              MyTextInputWidget(value: typedTextList, ref: ref),
               gapH16,
-              // SingleChildScrollView(
-              //   scrollDirection: Axis.horizontal,
-              //   child: Row(
-              //     children: [
-              //       const MyKeyBoard(),
-              //       gapW16,
-              //       Container(color: Colors.white, child: const MyKeyBoard()),
-              //     ],
-              //   ),
-              // ),
-              const MyKeyBoard(),
+              SizedBox(
+                height: 216,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      const MyKeyBoard(),
+                      gapW8,
+                      Container(
+                          color: Colors.white, child: const MyKeyBoard2()),
+                    ],
+                  ),
+                ),
+              ),
+              // const MyKeyBoard(),
               gapH16,
             ],
           ),

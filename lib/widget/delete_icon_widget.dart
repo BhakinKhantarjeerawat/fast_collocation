@@ -15,6 +15,8 @@ class DeleteIconWidget extends StatelessWidget {
     return SizedBox(
       width: 50,
       child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              backgroundColor: Color.fromARGB(255, 145, 246, 152)),
           onPressed: () {
             ref.read(keyboardProvider.notifier).state = '';
           },

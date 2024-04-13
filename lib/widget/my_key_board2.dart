@@ -1,18 +1,19 @@
 import 'package:fast_collocation_dictionary/constants/app_sizes.dart';
 import 'package:fast_collocation_dictionary/keyboard_provider.dart';
+import 'package:fast_collocation_dictionary/widget/my_key_board_button2.dart';
 import 'package:fast_collocation_dictionary/widget/my_keyboard_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MyKeyBoard extends ConsumerStatefulWidget {
-  const MyKeyBoard({super.key});
+class MyKeyBoard2 extends ConsumerStatefulWidget {
+  const MyKeyBoard2({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _MyKeyBoardState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _MyKeyBoard2State();
 }
 
-class _MyKeyBoardState extends ConsumerState<MyKeyBoard> {
+class _MyKeyBoard2State extends ConsumerState<MyKeyBoard2> {
   @override
   Widget build(BuildContext context) {
     final currentTypedText = ref.watch(keyboardProvider);
@@ -24,34 +25,46 @@ class _MyKeyBoardState extends ConsumerState<MyKeyBoard> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                MyButtonKeyboard(
-                    text: 'ภ',
+                MyButtonKeyboard2(
+                    text: '1',
                     onPressed: () => ref.read(keyboardProvider.notifier).state =
-                        '$currentTypedTextภ'),
-                MyButtonKeyboard(
-                    text: 'ถ',
+                        '${currentTypedText}1'),
+                MyButtonKeyboard2(
+                    text: '2',
                     onPressed: () => ref.read(keyboardProvider.notifier).state =
-                        '$currentTypedTextถ'),
-                MyButtonKeyboard(
-                    text: 'ค',
+                        '${currentTypedText}2'),
+                MyButtonKeyboard2(
+                    text: '3',
                     onPressed: () => ref.read(keyboardProvider.notifier).state =
-                        '$currentTypedTextค'),
-                MyButtonKeyboard(
-                    text: 'ต',
+                        '${currentTypedText}3'),
+                MyButtonKeyboard2(
+                    text: '4',
                     onPressed: () => ref.read(keyboardProvider.notifier).state =
-                        '$currentTypedTextต'),
-                MyButtonKeyboard(
-                    text: 'จ',
+                        '${currentTypedText}4'),
+                MyButtonKeyboard2(
+                    text: '5',
                     onPressed: () => ref.read(keyboardProvider.notifier).state =
-                        '$currentTypedTextจ'),
-                MyButtonKeyboard(
-                    text: 'ข',
+                        '${currentTypedText}5'),
+                MyButtonKeyboard2(
+                    text: '6',
                     onPressed: () => ref.read(keyboardProvider.notifier).state =
-                        '$currentTypedTextข'),
-                MyButtonKeyboard(
-                    text: 'ช',
+                        '${currentTypedText}6'),
+                MyButtonKeyboard2(
+                    text: '7',
                     onPressed: () => ref.read(keyboardProvider.notifier).state =
-                        '$currentTypedTextช'),
+                        '${currentTypedText}7'),
+                MyButtonKeyboard2(
+                    text: '8',
+                    onPressed: () => ref.read(keyboardProvider.notifier).state =
+                        '${currentTypedText}8'),
+                MyButtonKeyboard2(
+                    text: '9',
+                    onPressed: () => ref.read(keyboardProvider.notifier).state =
+                        '${currentTypedText}9'),
+                MyButtonKeyboard2(
+                    text: '0',
+                    onPressed: () => ref.read(keyboardProvider.notifier).state =
+                        '${currentTypedText}0'),
               ],
             ),
             gapH8,
@@ -59,34 +72,34 @@ class _MyKeyBoardState extends ConsumerState<MyKeyBoard> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // ElevatedButton(child: const Text('พ'), onPressed: () {}),
+                MyButtonKeyboard(
+                    text: 'ฎ',
+                    onPressed: () => ref.read(keyboardProvider.notifier).state =
+                        '$currentTypedTextฎ'),
+                MyButtonKeyboard(
+                    text: 'ฑ',
+                    onPressed: () => ref.read(keyboardProvider.notifier).state =
+                        '$currentTypedTextฑ'),
+                MyButtonKeyboard(
+                    text: 'ธ',
+                    onPressed: () => ref.read(keyboardProvider.notifier).state =
+                        '$currentTypedTextธ'),
+                MyButtonKeyboard(
+                    text: 'ณ',
+                    onPressed: () => ref.read(keyboardProvider.notifier).state =
+                        '$currentTypedTextณ'),
+                MyButtonKeyboard(
+                    text: 'ญ',
+                    onPressed: () => ref.read(keyboardProvider.notifier).state =
+                        '$currentTypedTextญ'),
+                MyButtonKeyboard(
+                    text: 'ฐ',
+                    onPressed: () => ref.read(keyboardProvider.notifier).state =
+                        '$currentTypedTextฐ'),
                 // MyButtonKeyboard(
-                //     text: 'ฉ',
+                //     text: 'ล',
                 //     onPressed: () => ref.read(keyboardProvider.notifier).state =
-                //         '$currentTypedTextฉ'),
-                MyButtonKeyboard(
-                    text: 'พ',
-                    onPressed: () => ref.read(keyboardProvider.notifier).state =
-                        '$currentTypedTextพ'),
-                MyButtonKeyboard(
-                    text: 'ร',
-                    onPressed: () => ref.read(keyboardProvider.notifier).state =
-                        '$currentTypedTextร'),
-                MyButtonKeyboard(
-                    text: 'น',
-                    onPressed: () => ref.read(keyboardProvider.notifier).state =
-                        '$currentTypedTextน'),
-                MyButtonKeyboard(
-                    text: 'ย',
-                    onPressed: () => ref.read(keyboardProvider.notifier).state =
-                        '$currentTypedTextย'),
-                MyButtonKeyboard(
-                    text: 'บ',
-                    onPressed: () => ref.read(keyboardProvider.notifier).state =
-                        '$currentTypedTextบ'),
-                MyButtonKeyboard(
-                    text: 'ล',
-                    onPressed: () => ref.read(keyboardProvider.notifier).state =
-                        '$currentTypedTextล'),
+                //         '$currentTypedTextล'),
               ],
             ),
             gapH8,
@@ -94,33 +107,33 @@ class _MyKeyBoardState extends ConsumerState<MyKeyBoard> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 MyButtonKeyboard(
-                    text: 'ฟ',
+                    text: 'ฤ',
                     onPressed: () => ref.read(keyboardProvider.notifier).state =
-                        '$currentTypedTextฟ'),
+                        '$currentTypedTextฤ'),
                 MyButtonKeyboard(
-                    text: 'ห',
+                    text: 'ฆ',
                     onPressed: () => ref.read(keyboardProvider.notifier).state =
-                        '$currentTypedTextห'),
+                        '$currentTypedTextฆ'),
                 MyButtonKeyboard(
-                    text: 'ก',
+                    text: 'ฏ',
                     onPressed: () => ref.read(keyboardProvider.notifier).state =
-                        '$currentTypedTextก'),
+                        '$currentTypedTextฏ'),
                 MyButtonKeyboard(
-                    text: 'ด',
+                    text: 'ฌ',
                     onPressed: () => ref.read(keyboardProvider.notifier).state =
-                        '$currentTypedTextด'),
+                        '$currentTypedTextฌ'),
                 MyButtonKeyboard(
-                    text: 'ส',
+                    text: 'ษ',
                     onPressed: () => ref.read(keyboardProvider.notifier).state =
-                        '$currentTypedTextส'),
+                        '$currentTypedTextษ'),
                 MyButtonKeyboard(
-                    text: 'ว',
+                    text: 'ศ',
                     onPressed: () => ref.read(keyboardProvider.notifier).state =
-                        '$currentTypedTextว'),
+                        '$currentTypedTextศ'),
                 MyButtonKeyboard(
-                    text: 'ง',
+                    text: 'ซ',
                     onPressed: () => ref.read(keyboardProvider.notifier).state =
-                        '$currentTypedTextง'),
+                        '$currentTypedTextซ'),
               ],
             ),
             gapH8,
@@ -129,29 +142,29 @@ class _MyKeyBoardState extends ConsumerState<MyKeyBoard> {
               children: [
                 MyButtonKeyboard(text: '/', onPressed: () {}),
                 MyButtonKeyboard(
-                    text: 'ผ',
+                    text: 'ฉ',
                     onPressed: () => ref.read(keyboardProvider.notifier).state =
-                        '$currentTypedTextผ'),
+                        '$currentTypedTextฉ'),
                 MyButtonKeyboard(
-                    text: 'ป',
+                    text: 'ฮ',
                     onPressed: () => ref.read(keyboardProvider.notifier).state =
-                        '$currentTypedTextป'),
+                        '$currentTypedTextฮ'),
                 MyButtonKeyboard(
-                    text: 'อ',
+                    text: 'ฒ',
                     onPressed: () => ref.read(keyboardProvider.notifier).state =
-                        '$currentTypedTextอ'),
+                        '$currentTypedTextฒ'),
                 MyButtonKeyboard(
-                    text: 'ท',
+                    text: 'ฬ',
                     onPressed: () => ref.read(keyboardProvider.notifier).state =
-                        '$currentTypedTextท'),
+                        '$currentTypedTextฬ'),
                 MyButtonKeyboard(
-                    text: 'ม',
+                    text: 'ฦ',
                     onPressed: () => ref.read(keyboardProvider.notifier).state =
-                        '$currentTypedTextม'),
-                MyButtonKeyboard(
-                    text: 'ฝ',
-                    onPressed: () => ref.read(keyboardProvider.notifier).state =
-                        '$currentTypedTextฝ'),
+                        '$currentTypedTextฦ'),
+                // MyButtonKeyboard(
+                //     text: 'ฝ',
+                //     onPressed: () => ref.read(keyboardProvider.notifier).state =
+                //         '$currentTypedTextฝ'),
               ],
             )
           ],

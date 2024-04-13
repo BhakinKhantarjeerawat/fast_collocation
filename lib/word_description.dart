@@ -1,4 +1,5 @@
 import 'package:fast_collocation_dictionary/constants/app_sizes.dart';
+import 'package:fast_collocation_dictionary/excercise_page.dart';
 import 'package:fast_collocation_dictionary/models/word.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -47,63 +48,100 @@ class _WordDescriptionPageState extends ConsumerState<WordDescriptionPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    WordDescriptionText(widget.word.enWord, fontSize: 20),
+                    WordDescriptionText(widget.word.enWord, fontSize: 25),
                     const Text('  -  '),
                     WordDescriptionText(
                         widget.word.thVoice ?? 'no thai voice data',
-                        fontSize: 20),
+                        fontSize: 25),
                   ],
                 ),
-                WordDescriptionText(widget.word.adjClc.toString(),
-                    fontSize: 20),
-                WordDescriptionText(widget.word.verbClc.toString(),
-                    fontSize: 20),
                 gapH16,
-                MyExpansionTile(
-                  context,
-                  'adj',
-                  children: [
-                    widget.word.adjExample == null ||
-                            widget.word.adjExample!.isEmpty
-                        ? const Text('No adj example data')
-                        : SizedBox(
-                            height: 120,
-                            child: ListView.builder(
-                                itemCount: widget.word.adjExample!.length,
-                                itemBuilder: (context, index) {
-                                  final adjExample =
-                                      widget.word.adjExample![index];
-                                  return Text(adjExample);
-                                }),
-                          ),
-                  ],
+                //
+                Container(
+                  width: double.infinity,
+                  color: const Color.fromARGB(255, 215, 250, 217),
+                  child: Column(
+                    children: [
+                      Wrap(children: [
+                        ...widget.word.adjClc!
+                            .map((e) => Tooltip(
+                                  message: e,
+                                  textStyle: const TextStyle(fontSize: 30),
+                                  child: TextButton(
+                                      onPressed: () {}, child: Text(e)),
+                                ))
+                            .toList()
+                      ]),
+                      MyExpansionTile(
+                        context,
+                        'adj',
+                        children: [
+                          widget.word.adjExample == null ||
+                                  widget.word.adjExample!.isEmpty
+                              ? const Text('No adj example data')
+                              : SizedBox(
+                                  height: 70,
+                                  child: ListView.builder(
+                                      itemCount: widget.word.adjExample!.length,
+                                      itemBuilder: (context, index) {
+                                        final adjExample =
+                                            widget.word.adjExample![index];
+                                        return Text(adjExample);
+                                      }),
+                                ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-                MyExpansionTile(
-                  context,
-                  'verb',
-                  children: [
-                    widget.word.verbExample == null ||
-                            widget.word.verbExample!.isEmpty
-                        ? const Text('No verb example data')
-                        : SizedBox(
-                            height: 120,
-                            child: ListView.builder(
-                                itemCount: widget.word.verbExample!.length,
-                                itemBuilder: (context, index) {
-                                  final verbExample =
-                                      widget.word.verbExample![index];
-                                  return Text(verbExample);
-                                }),
-                          ),
-                  ],
+
+                gapH16,
+                Container(
+                  width: double.infinity,
+                  color: const Color.fromARGB(255, 215, 250, 217),
+                  child: Column(
+                    children: [
+                      Wrap(children: [
+                        ...widget.word.verbClc!
+                            .map((e) => Tooltip(
+                                  message: e,
+                                  textStyle: const TextStyle(fontSize: 20),
+                                  child: TextButton(
+                                      onPressed: () {}, child: Text(e)),
+                                ))
+                            .toList()
+                      ]),
+                      MyExpansionTile(
+                        context,
+                        'verb',
+                        children: [
+                          widget.word.verbExample == null ||
+                                  widget.word.verbExample!.isEmpty
+                              ? const Text('No verb example data')
+                              : SizedBox(
+                                  height: 90,
+                                  child: ListView.builder(
+                                      itemCount:
+                                          widget.word.verbExample!.length,
+                                      itemBuilder: (context, index) {
+                                        final verbExample =
+                                            widget.word.verbExample![index];
+                                        return Text(verbExample);
+                                      }),
+                                ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
                 gapH32,
                 SizedBox(
                   width: 360,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromARGB(255, 219, 251, 221)),
+                        backgroundColor:
+                            const Color.fromARGB(255, 251, 180, 132),
+                      ),
                       onPressed: () {
                         Navigator.pop(context);
                       },
@@ -114,10 +152,15 @@ class _WordDescriptionPageState extends ConsumerState<WordDescriptionPage> {
                   width: 360,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromARGB(255, 219, 251, 221)),
+                        backgroundColor:
+                            const Color.fromARGB(255, 251, 180, 132),
+                      ),
                       onPressed: () {
-                        Navigator.pop(context);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ExecercisePage(),
+                            ));
                       },
                       child: const Text('excercise')),
                 ),
@@ -126,12 +169,6 @@ class _WordDescriptionPageState extends ConsumerState<WordDescriptionPage> {
           ),
         ),
       ),
-      // floatingActionButton: SizedBox(
-      //   width: double.infinity,
-      //   child: FloatingActionButton(onPressed: () {
-      //     Navigator.pop(context);
-      //   }),
-      // ),
     );
   }
 }
@@ -166,7 +203,7 @@ class MyExpansionTile extends ConsumerWidget {
         Builder(
           builder: (context) {
             return Container(
-              color: const Color.fromARGB(255, 212, 246, 230),
+              color: const Color.fromARGB(255, 215, 250, 217),
               padding: const EdgeInsets.all(24),
               alignment: Alignment.center,
               child: Column(children: [
