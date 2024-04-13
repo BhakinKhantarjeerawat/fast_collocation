@@ -1,4 +1,5 @@
 import 'package:fast_collocation_dictionary/constants/app_sizes.dart';
+import 'package:fast_collocation_dictionary/constants/word_lists.dart';
 import 'package:fast_collocation_dictionary/keyboard_provider.dart';
 import 'package:fast_collocation_dictionary/models/word.dart';
 import 'package:fast_collocation_dictionary/widget/delete_icon_widget.dart';
@@ -7,24 +8,9 @@ import 'package:fast_collocation_dictionary/widget/searched_widget.dart';
 import 'package:fast_collocation_dictionary/widget/typed_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:dartx/dartx.dart';
 
-List<Word> wordList = [
-  Word('ตถ', 'ต้นถั่ว', 'bean_stalk'),
-  Word('ปฟ', 'แปรงฟัน', 'tooth_brush'),
-  Word('ปฟ', 'ถั่วเหลือง', 'soy'),
-  Word('ปฟ', 'ราเม็น', 'ramen'),
-  Word('ปฟ', 'ราเม็น', 'instant_noodles'),
-  Word('ปฟ', 'แปรงฟัน', 'tooth_brush'),
-  Word('ปฟ', 'ถั่วเหลือง', 'soy'),
-  Word('ปฟ', 'ราเม็น', 'ramen'),
-  Word('ปฟ', 'ราเม็น', 'instant_noodles'),
-  Word('ปฟ', 'ราเม็น', 'ramen'),
-  Word('ปฟ', 'ราเม็น', 'instant_noodles'),
-  Word('ปฟ', 'แปรงฟัน', 'tooth_brush'),
-  Word('ปฟ', 'ถั่วเหลือง', 'soy'),
-  Word('ปฟ', 'ราเม็น', 'ramen'),
-  Word('ปฟ', 'ราเม็น', 'instant_noodles'),
-];
+
 
 class FilteredWords extends ConsumerWidget {
   const FilteredWords({super.key});
@@ -41,7 +27,7 @@ class FilteredWords extends ConsumerWidget {
       return Column(
         children: [
           Container(
-              color: Colors.blue,
+              color: const Color.fromARGB(255, 169, 231, 171),
               height: 390,
               child: GridView.builder(
                 itemCount: filteredWords.length,
@@ -54,15 +40,14 @@ class FilteredWords extends ConsumerWidget {
                   return SearchedWidget(word: word);
                 },
               )),
-                         filteredWords.length > 9
-                  ? const Text('เลื่อนลงได้')
-                  : const SizedBox()
+          filteredWords.length > 9
+              ? const Text('เลื่อนลงได้')
+              : const SizedBox()
         ],
       );
     }
   }
 }
-
 
 class MyHomePage extends ConsumerStatefulWidget {
   const MyHomePage({super.key});
@@ -74,11 +59,16 @@ class MyHomePage extends ConsumerStatefulWidget {
 class _MyHomePageState extends ConsumerState<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    final value = ref.watch(keyboardProvider).toString();
+    final typedText = ref.watch(keyboardProvider).toString();
+    final lastLetter = ref.watch(keyboardProvider);
+    print('HOMEPAGE BUILT');
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('Home Page'),
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.settings))
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -96,8 +86,26 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
               // ),
               const FilteredWords(),
               const Spacer(),
-              MyTextInputWidget(value: value, ref: ref),
+              if (typedText.isNotEmpty)
+                Row(
+                  children: [
+                    ElevatedButton(
+                        onPressed: () {}, child: Text(lastLetter.slice(-1))),
+                  ],
+                ),
               gapH16,
+              MyTextInputWidget(value: typedText, ref: ref),
+              gapH16,
+              // SingleChildScrollView(
+              //   scrollDirection: Axis.horizontal,
+              //   child: Row(
+              //     children: [
+              //       const MyKeyBoard(),
+              //       gapW16,
+              //       Container(color: Colors.white, child: const MyKeyBoard()),
+              //     ],
+              //   ),
+              // ),
               const MyKeyBoard(),
               gapH16,
             ],
@@ -122,18 +130,11 @@ class MyTextInputWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Colors.orange,
+          color: const Color.fromARGB(255, 202, 249, 203),
           borderRadius: BorderRadius.circular(20)),
       child: Row(
-        children: [
-          TypedTextWidget(value: value),
-          DeleteIconWidget(ref: ref)
-        ],
+        children: [TypedTextWidget(value: value), DeleteIconWidget(ref: ref)],
       ),
     );
   }
 }
-
-
-
-

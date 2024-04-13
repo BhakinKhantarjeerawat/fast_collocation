@@ -10,7 +10,7 @@ class MyButtonKeyboard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return SizedBox(
-        width: 50,
+        width: 45,
         child: ElevatedButton(
             onPressed: onPressed,
             child: Center(

@@ -14,11 +14,11 @@ class DeleteIconWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 50,
-      child: IconButton(
+      child: ElevatedButton(
           onPressed: () {
             ref.read(keyboardProvider.notifier).state = '';
           },
-          icon: const Icon(Icons.remove)),
+          child: const Icon(Icons.remove)),
     );
   }
 }
