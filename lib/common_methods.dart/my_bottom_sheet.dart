@@ -1,13 +1,14 @@
-import 'package:fast_collocation_dictionary/constants/mapped_clc.dart';
+import 'package:fast_collocation_dictionary/vocabs/example_map.dart';
 import 'package:fast_collocation_dictionary/widget/my_text.dart';
 import 'package:flutter/material.dart';
 
 Future<dynamic> myBottomSheet(context, String clc, String mappedWord) {
   return showModalBottomSheet(
+    barrierColor: Colors.transparent,
     context: context,
     builder: (context) {
-      final addedUnderscoreWord = '${mappedWord}_$clc';
-      final mappedResult = mappedClc[addedUnderscoreWord];
+      final combinedWord = '${mappedWord}_$clc';
+      final mappedResult = exampleMap[combinedWord];
       if (mappedResult == null) {
         return Container(
             width: double.infinity,

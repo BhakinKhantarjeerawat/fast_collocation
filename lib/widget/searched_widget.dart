@@ -1,8 +1,12 @@
-import 'package:fast_collocation_dictionary/common_methods.dart/my_navigate.dart';
 import 'package:fast_collocation_dictionary/constants/app_sizes.dart';
 import 'package:fast_collocation_dictionary/models/word.dart';
 import 'package:fast_collocation_dictionary/word_desc_page.dart';
 import 'package:flutter/material.dart';
+
+String removeLetters(String word) {
+  final result = word.replaceAll(RegExp(r'[^\w\s]+'), '');
+  return result;
+}
 
 class SearchedWidget extends StatelessWidget {
   const SearchedWidget({super.key, required this.word});
@@ -12,7 +16,6 @@ class SearchedWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () =>
-
           // myNavigate(context, WordDescPage(word: word)),
           Navigator.push(
               context,
@@ -24,7 +27,8 @@ class SearchedWidget extends StatelessWidget {
             tag: word.enWord,
             child: CircleAvatar(
                 radius: 45,
-                child: Image.asset('assets/images/${word.enWord}.png')),
+                child: Image.asset(
+                    'assets/images/${removeLetters(word.enWord)}.png')),
           ),
           gapH4,
           // Text(word.enWord),

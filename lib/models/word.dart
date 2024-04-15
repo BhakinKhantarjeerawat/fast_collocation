@@ -5,6 +5,7 @@ class Word {
     this.enWord, {
     this.thVoice,
     this.verbClc,
+    this.objectVerbClc,
    this.adjClc,
    this.adjExample,
     this.verbExample
@@ -14,6 +15,7 @@ class Word {
   final String enWord;
   final String? thVoice;
   final List<String>? verbClc;
+    final List<String>? objectVerbClc;
   final List<String>? adjClc;
   final List<String>? adjExample;
   final List<String>? verbExample;

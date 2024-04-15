@@ -1,4 +1,4 @@
-import 'package:fast_collocation_dictionary/constants/word_lists.dart';
+import 'package:fast_collocation_dictionary/vocabs/word_list.dart';
 import 'package:fast_collocation_dictionary/providers/keyboard_provider.dart';
 import 'package:fast_collocation_dictionary/models/word.dart';
 import 'package:fast_collocation_dictionary/widget/my_text.dart';

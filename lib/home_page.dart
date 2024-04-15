@@ -8,7 +8,6 @@ import 'package:fast_collocation_dictionary/widget/typed_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-
 class MyHomePage extends ConsumerStatefulWidget {
   const MyHomePage({super.key});
 
@@ -22,7 +21,6 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
     final typedTextList = ref.watch(keyboardProvider);
     // final suggestedLetter = ref.watch(suggestedLettersProvider);
 
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -31,7 +29,6 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
           IconButton(onPressed: () {}, icon: const Icon(Icons.settings)),
           // Text(box.read('learntWords') ?? 'No word added yet')
         ],
-    
       ),
       body: Padding(
         padding: const EdgeInsets.all(0),
@@ -84,7 +81,8 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
                       const MyKeyBoard(),
                       gapW8,
                       Container(
-                          color: Colors.white, child: const MyKeyBoard2()),
+                          color: const Color.fromARGB(255, 247, 211, 158),
+                          child: const MyKeyBoard2()),
                     ],
                   ),
                 ),
