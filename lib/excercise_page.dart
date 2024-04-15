@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -12,6 +11,7 @@ class ExecercisePage extends ConsumerStatefulWidget {
 class _ExecercisePageState extends ConsumerState<ExecercisePage> {
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         appBar: AppBar(title: const Text('Exercise Page')),
         body: Padding(

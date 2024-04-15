@@ -1,5 +1,5 @@
 import 'package:fast_collocation_dictionary/constants/app_sizes.dart';
-import 'package:fast_collocation_dictionary/keyboard_provider.dart';
+import 'package:fast_collocation_dictionary/providers/keyboard_provider.dart';
 import 'package:fast_collocation_dictionary/widget/my_key_board_button2.dart';
 import 'package:fast_collocation_dictionary/widget/my_keyboard_button.dart';
 import 'package:flutter/material.dart';

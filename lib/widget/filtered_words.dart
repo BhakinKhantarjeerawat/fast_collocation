@@ -1,8 +1,8 @@
 import 'package:fast_collocation_dictionary/constants/word_lists.dart';
-import 'package:fast_collocation_dictionary/keyboard_provider.dart';
+import 'package:fast_collocation_dictionary/providers/keyboard_provider.dart';
 import 'package:fast_collocation_dictionary/models/word.dart';
+import 'package:fast_collocation_dictionary/widget/my_text.dart';
 import 'package:fast_collocation_dictionary/widget/searched_widget.dart';
-import 'package:fast_collocation_dictionary/widget/word_desc_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -16,7 +16,7 @@ class FilteredWords extends ConsumerWidget {
         .where((Word element) => element.abbreviation == value)
         .toList();
     if (filteredWords.isEmpty) {
-      return const WordDescText('ไม่พบคำที่ค้นหา');
+      return const MyText('ไม่พบคำที่ค้นหา');
     } else {
       return Column(
         children: [
@@ -24,6 +24,7 @@ class FilteredWords extends ConsumerWidget {
               color: const Color.fromARGB(255, 169, 231, 171),
               height: 390,
               child: GridView.builder(
+                reverse: true,
                 itemCount: filteredWords.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
