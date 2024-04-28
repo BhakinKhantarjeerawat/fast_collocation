@@ -1,5 +1,7 @@
+import 'package:fast_collocation_dictionary/common_methods.dart/my_navigate.dart';
 import 'package:fast_collocation_dictionary/constants/app_sizes.dart';
 import 'package:fast_collocation_dictionary/providers/keyboard_provider.dart';
+import 'package:fast_collocation_dictionary/test_screen.dart';
 import 'package:fast_collocation_dictionary/widget/delete_icon_widget.dart';
 import 'package:fast_collocation_dictionary/widget/filtered_words.dart';
 import 'package:fast_collocation_dictionary/widget/my_key_board2.dart';
@@ -16,10 +18,10 @@ class MyHomePage extends ConsumerStatefulWidget {
 }
 
 class _MyHomePageState extends ConsumerState<MyHomePage> {
+
   @override
   Widget build(BuildContext context) {
     final typedTextList = ref.watch(keyboardProvider);
-    // final suggestedLetter = ref.watch(suggestedLettersProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -27,6 +29,12 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
         title: const Text('Home Page'),
         actions: [
           IconButton(onPressed: () {}, icon: const Icon(Icons.settings)),
+          IconButton(
+              onPressed: () {
+                myNavigate(context, const TestScreen(testString: '7',));
+              },
+              icon: const Icon(Icons.book)),
+
           // Text(box.read('learntWords') ?? 'No word added yet')
         ],
       ),
@@ -35,40 +43,9 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
         child: Center(
           child: Column(
             children: <Widget>[
-              // const Wrap(
-              //   spacing: 20,
-              //   runSpacing: 10,
-              //   children: [
-              //   ],
-              // ),
               gapH16,
               const FilteredWords(),
-              const Spacer(),
-              // if (typedTextList.toString().isNotEmpty)
-              //   SizedBox(
-              //     height: 55,
-              //     child: ListView.separated(
-              //       separatorBuilder: (context, index) => gapW16,
-              //       scrollDirection: Axis.horizontal,
-              //       // reverse: true,
-              //       itemCount: suggestedLetter.length,
-              //       itemBuilder: (context, index) {
-              //         final result = suggestedLetter[index];
-              //         return Center(
-              //           child: Center(
-              //             child: ElevatedButton(
-              //                 onPressed: () {
-              //                   if (typedTextList.length > 1) {
-              //                     ref.read(keyboardProvider.notifier).state =
-              //                         typedTextList.slice(0, -2) + result;
-              //                   }
-              //                 },
-              //                 child: Text(result)),
-              //           ),
-              //         );
-              //       },
-              //     ),
-              //   ),
+              const Spacer(),         
               gapH16,
               MyTextInputWidget(value: typedTextList, ref: ref),
               gapH16,

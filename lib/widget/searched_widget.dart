@@ -8,6 +8,11 @@ String removeLetters(String word) {
   return result;
 }
 
+String addUnderscore(String text) {
+  final result = text.replaceAll(' ', '_');
+  return result;
+}
+
 class SearchedWidget extends StatelessWidget {
   const SearchedWidget({super.key, required this.word});
   final Word word;
@@ -28,7 +33,7 @@ class SearchedWidget extends StatelessWidget {
             child: CircleAvatar(
                 radius: 45,
                 child: Image.asset(
-                    'assets/images/${removeLetters(word.enWord)}.png')),
+                    'assets/images/${addUnderscore(word.enWord)}.png')),
           ),
           gapH4,
           // Text(word.enWord),
