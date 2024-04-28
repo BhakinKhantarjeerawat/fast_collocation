@@ -31,7 +31,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
           IconButton(onPressed: () {}, icon: const Icon(Icons.settings)),
           IconButton(
               onPressed: () {
-                myNavigate(context, const TestScreen(testString: '7',));
+                myNavigate(context, const TestScreen());
               },
               icon: const Icon(Icons.book)),
 
